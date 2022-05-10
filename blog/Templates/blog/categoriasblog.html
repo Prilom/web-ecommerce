@@ -1,0 +1,52 @@
+{% extends 'ProyectoWebApp/base.html' %}
+
+{% block content %}
+<section>
+  <div style="width:75%; margin:auto; text-align:center; color:white;">
+    Categorias: &nbsp;&nbsp;
+    
+      {% for categoria in todas_categorias %}
+        <a class= 'linksCategorias' href='{% url 'Categoria' categoria.id %}'> {{categoria.nombre}} </a> &nbsp;&nbsp;&nbsp;&nbsp;
+      
+    {% endfor %}
+  </div>
+</section>
+   {% if posts %}
+
+        {% for post in posts %}
+
+        <section class="page-section clearfix">
+            <div class="container">
+              <div class="intro">
+                <img class="intro-img img-fluid mb-3 mb-lg-0 rounded-circle" src="{{post.imagen.url}}" alt="" style = "width:50%;">
+                <div class="intro-text left-0 text-center bg-faded p-5 rounded" >
+                  <h2 class="section-heading mb-4" >
+                    <span class="section-heading-lower">{{post.titulo}}</span>
+                    <span class="section-heading-upper">{{post.contenido}}</span>
+                  </h2>
+                      
+                </div>
+              </div>
+            </div>
+          </section>
+          {% endfor %}
+    {% else %}
+          <!-- Message -->
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <span style='color: red' class="section-heading-lower">No existen resultados para la busqueda</span>
+              </h2>
+              <p class="mb-0">Vuelva a realizar la consulta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+       
+   
+{% endblock %}
